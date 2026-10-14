@@ -4,11 +4,11 @@
 > EEST N.º 1 "Eduardo Ader" — Laboratorio de Programación (LPR) — 5° 3° A
 > Profesor: Yamil Gandgulia — 1° Cuatrimestre 2026
 > **Autor:** Malek Cheheid
-> **Repositorio:** https://github.com/malekcheheid-art/calculadoraedad.git
+
 
 ---
 
-## 📌 Descripción
+##  Descripción
 
 Programa que calcula la **edad exacta** de una persona a partir de su fecha de
 nacimiento, verificando que la fecha ingresada exista realmente en el calendario
@@ -22,7 +22,7 @@ comparar cómo se expresa la misma lógica en cada uno.
 
 ---
 
-## 🎯 Requisitos del algoritmo
+##  Requisitos del algoritmo
 
 El programa debe cumplir tres condiciones:
 
@@ -54,7 +54,7 @@ if mesN > mesA or (mesN == mesA and diaN > diaA):
 
 ---
 
-## 📁 Estructura de carpetas
+## Estructura de carpetas
 
 ```
 calculadoraedad/
@@ -71,7 +71,7 @@ calculadoraedad/
 
 ---
 
-## 🚀 Cómo ejecutar
+##  Cómo ejecutar
 
 ### Python
 
@@ -116,7 +116,7 @@ proyecto_cpp/main.exe
 
 ---
 
-## ✅ Casos de prueba verificados
+##  Casos de prueba verificados
 
 | Caso | Entrada | Resultado esperado |
 |---|---|---|
@@ -139,7 +139,7 @@ proyecto_cpp/main.exe
 
 ---
 
-## 🔍 Diferencias entre Python y C++
+##  Diferencias entre Python y C++
 
 | Aspecto | Python | C++ |
 |---|---|---|
@@ -161,7 +161,7 @@ gestión manual de C++.
 
 ---
 
-## 📄 Documentación
+##  Documentación
 
 El informe completo en formato **APA v7** se encuentra en:
 
@@ -171,6 +171,6 @@ docs/InformeProyectoCalculadoraEdad.pdf
 
 ---
 
-## 📄 Licencia
+##  Licencia
 
 Proyecto con fines educativos bajo la licencia [MIT](LICENSE).
