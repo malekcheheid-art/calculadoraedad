@@ -2,7 +2,7 @@ def es_bisiesto(anio):
     return (anio % 4 == 0 and anio % 100 != 0) or (anio % 400 == 0)
 
 
-def es_fecha_valida(d, m, a):
+def es_fecha_valida(d, m, a, diaA, mesA, anioA):
     if a < 1900 or a > 2026:
         return False
 
@@ -23,6 +23,9 @@ def es_fecha_valida(d, m, a):
             if d > 28:
                 return False
 
+    if (a, m, d) > (anioA, mesA, diaA):
+        return False
+
     return True
 
 
@@ -37,7 +40,7 @@ try:
 
     diaA, mesA, anioA = 8, 7, 2026
 
-    if not es_fecha_valida(diaN, mesN, anioN):
+    if not es_fecha_valida(diaN, mesN, anioN, diaA, mesA, anioA):
         print("[ERROR] La fecha ingresada no es valida.")
     else:
         edad = anioA - anioN
@@ -58,4 +61,4 @@ except EOFError:
     print("")
     print("Ejecutalo desde la TERMINAL de VS Code:")
     print("    cd proyecto_python")
-    print("    python main.py")
+    print("    python calculadoraEdad.py")

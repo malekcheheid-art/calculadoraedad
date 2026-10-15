@@ -1,8 +1,8 @@
 # Calculadora de Edad — Python & C++
 
-> **Actividad 1 – De Revisión Integral (Python & C++)**
+> **Actividad 1 — De Revisión Integral (Python & C++)**
 > EEST N.º 1 "Eduardo Ader" — Laboratorio de Programación (LPR) — 5° 3° A
-> Profesor: Yamil Gandgulia — 1° Cuatrimestre 2026
+> Profesor: Yamil Ganduglia — 1° Cuatrimestre 2026
 > **Autor:** Malek Cheheid
 
 
@@ -24,13 +24,15 @@ comparar cómo se expresa la misma lógica en cada uno.
 
 ##  Requisitos del algoritmo
 
-El programa debe cumplir tres condiciones:
+El programa debe cumplir estas condiciones:
 
 1. **Cálculo base:** `edad = anioActual - anioNacimiento`
 2. **Ajuste:** descontar 1 año si la persona **todavía no cumplió** años en el
-   el mes o día actual.
+   mes o día actual.
 3. **Validación:** rechazar fechas imposibles (día 35, mes 13, 29 de febrero en
    años no bisiestos, año 20900, etc.).
+4. **Fecha futura:** en la versión de Python también se rechazan las fechas de
+   nacimiento posteriores a la fecha de referencia.
 
 ### El condicional central (la parte a completar)
 
@@ -57,16 +59,16 @@ if mesN > mesA or (mesN == mesA and diaN > diaA):
 ## Estructura de carpetas
 
 ```
-calculadoraedad/
-├── .gitignore                                    # Excluye archivos pesados y de compilación
-├── README.md                                     # Este documento
-├── LICENSE                                       # Licencia MIT
-├── docs/
-│   └── InformeProyectoCalculadoraEdad.pdf        # Informe en formato APA v7
-├── proyecto_cpp/
-│   └── main.cpp                                  # Solución en C++
-└── proyecto_python/
-    └── main.py                                   # Solución en Python
+/calculadoraedad/
+├── .gitignore <-- Archivo para que Git ignore los archivos pesados
+├── README.md <-- Descripción breve del ejercicio de revisión
+├── LICENSE <-- Descripción breve de la licencia
+├── docs/ <-- Carpeta exclusiva para documentación
+│ └── InformeProyectoCalculadoraEdad.pdf <-- Archivo de información del Proyecto
+├── proyecto_cpp/ <-- Carpeta exclusiva para el código de C++
+│ └── calculadoraEdad.cpp <-- Archivo de código en C++
+└── proyecto_python/ <-- Carpeta exclusiva para el código de Python
+ └── calculadoraEdad.py <-- Archivo de código en Python
 ```
 
 ---
@@ -79,7 +81,7 @@ No requiere instalar nada (solo Python 3).
 
 ```bash
 cd proyecto_python
-python main.py
+python calculadoraEdad.py
 ```
 
 El programa pide el **día**, **mes** y **año** por separado:
@@ -96,19 +98,23 @@ Ingrese Anio de nacimiento: 2008
 [SISTEMA] Edad calculada: 18 anos.
 ```
 
+Si lo ejecutás con doble clic o con el botón **Run** de VS Code no vas a poder
+escribir nada: el archivo detecta esa situación y te explica cómo correrlo
+desde la terminal.
+
 ### C++
 
 **Opción 1 — Local (Windows con MSYS2 / MinGW):**
 
 ```bash
-g++ -std=c++17 -O2 proyecto_cpp/main.cpp -o proyecto_cpp/main.exe
-proyecto_cpp/main.exe
+g++ -std=c++17 -O2 proyecto_cpp/calculadoraEdad.cpp -o proyecto_cpp/calculadoraEdad.exe
+proyecto_cpp/calculadoraEdad.exe
 ```
 
 **Opción 2 — Online (OnlineGDB, sin instalar nada):**
 
 1. Entrá a <https://www.onlinegdb.com/online_c++_compiler>
-2. Pegá el contenido de `proyecto_cpp/main.cpp`
+2. Pegá el contenido de `proyecto_cpp/calculadoraEdad.cpp`
 3. Presioná **Run** y capturá la salida
 
 > La versión C++ pide día, mes y año **en una sola línea**, separados por
@@ -135,7 +141,8 @@ proyecto_cpp/main.exe
 | Año 20900 | `1 1 20900` | ❌ Fecha inválida |
 | Límite inferior (1/1/1900) | `1 1 1900` | 126 años |
 | Nacimiento el mismo día de hoy | `8 7 2026` | 0 años |
-| Texto en vez de número | `abc` | ❌ Error de tipo |
+| Fecha futura | `9 7 2027` | ❌ Fecha inválida *(solo Python)* |
+| Texto en vez de número | `abc` | ❌ Error de tipo *(solo Python)* |
 
 ---
 
@@ -146,11 +153,11 @@ proyecto_cpp/main.exe
 | **Declaración de variables** | Dinámica (no se declara ni se tipa) | Estática: `int diaN, mesN, anioN;` |
 | **Entrada por teclado** | `int(input("..."))` | `cin >> diaN >> mesN >> anioN;` |
 | **Salida por pantalla** | `print(f"...")` | `cout << "..." << endl;` |
-| **Conectores lógicos** | `and`, `or`, `not` | `&&`, `\|\|`, `!` |
+| **Conectores lógicos** | `and`, `or`, `not` | `&&`, `||`, `!` |
 | **Devolver valores** | `return` (sin tipo) | `bool esFechaValida(...)` (con tipo) |
 | **Verdadero/Falso** | `True` / `False` | `true` / `false` |
 | **Namespaces** | Módulos e importaciones | `using namespace std;` |
-| **Manejo de errores** | `try / except ValueError` | No hay equivalente nativo; `cin` falla silenciosamente |
+| **Manejo de errores** | `try / except ValueError / EOFError` | No hay equivalente nativo; `cin` falla silenciosamente |
 | **Fin de Sentencia** | No requiere `;` | Requiere `;` |
 
 **Observación importante:** el bloque `try/except` de la versión Python no tiene
@@ -158,6 +165,9 @@ un equivalente directo en C++. Ahí, `cin >> anio` deja la variable en un estado
 de error si la entrada no es numérica, y el programa continúa con un valor
 indeterminado. Esta es una de las ventajas que Python ofrece frente a la
 gestión manual de C++.
+
+Por la misma razón, la validación de fechas futuras existe solo en la versión de
+Python: en C++ no hay forma cómoda de detectar que la entrada no era numérica.
 
 ---
 
