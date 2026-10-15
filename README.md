@@ -142,7 +142,7 @@ proyecto_cpp/calculadoraEdad.exe
 | Límite inferior (1/1/1900) | `1 1 1900` | 126 años |
 | Nacimiento el mismo día de hoy | `8 7 2026` | 0 años |
 | Fecha futura | `9 7 2027` | ❌ Fecha inválida *(solo Python)* |
-| Texto en vez de número | `abc` | ❌ Error de tipo *(solo Python)* |
+| Texto en vez de número | `abc` | ⚠️ Mensaje engañoso *(solo C++; Python avisa bien)* |
 
 ---
 
@@ -161,10 +161,13 @@ proyecto_cpp/calculadoraEdad.exe
 | **Fin de Sentencia** | No requiere `;` | Requiere `;` |
 
 **Observación importante:** el bloque `try/except` de la versión Python no tiene
-un equivalente directo en C++. Ahí, `cin >> anio` deja la variable en un estado
-de error si la entrada no es numérica, y el programa continúa con un valor
-indeterminado. Esta es una de las ventajas que Python ofrece frente a la
-gestión manual de C++.
+un equivalente directo en C++. Si en C++ se escribe `abc` en lugar de un
+número, `cin` deja la variable en `0` y el programa no se da cuenta: en lugar
+de avisar que el dato no es un número, responde *"La fecha ingresada no existe en
+el calendario"*, porque en realidad está comparando `0/0/0`. Es un mensaje
+engañoso que solo se detecta probando el caso. Python, con `except ValueError`,
+sí informa correctamente del problema. Esta es una de las ventajas que Python
+ofrece frente a la gestión manual de C++.
 
 Por la misma razón, la validación de fechas futuras existe solo en la versión de
 Python: en C++ no hay forma cómoda de detectar que la entrada no era numérica.
